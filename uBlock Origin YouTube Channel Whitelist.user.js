@@ -11,16 +11,21 @@
 // ==/UserScript==
 
 // First page load
-// 
+//
 
 var exposeUserInURL = function() {
     'use strict';
- 
-    var link = document.querySelector('[id^="watch"][id$="-container"] [itemprop="channelId"][content]');
+
+    var link = document.querySelector('[id="watch7-user-header"] a[href^="/user/"]');
     if ( link === null ) {
        return;
     }
-    var channelId = link.getAttribute('content') || '';
+    var linkHref = link.getAttribute('href');
+    var linkmatch = linkHref.match(/\/user\/(.+)/);
+    if (linkmatch === null)
+        return;
+    var channelId = linkmatch[1];
+
     var newArg = channelId !== '' ? 'user=' + encodeURIComponent(channelId) : '';
     var matches = location.search.match(/(?:[?&])(user=(?:[^&]+|$))/);
     var oldArg = matches !== null ? matches[1] : '';

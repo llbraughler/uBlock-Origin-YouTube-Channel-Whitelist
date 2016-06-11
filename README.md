@@ -10,3 +10,4 @@ However, it is no longer being maintained. This repository aims to serve as a ch
 # Updates
 
 - Fixed "An error occurred during validation." occuring when viewing channel pages.
+- Fixed channel ID being used instead of username
